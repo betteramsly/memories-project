@@ -5,7 +5,8 @@ import * as actionType from "../../constans/actionTypes";
 import decode from "jwt-decode";
 
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@mui/material";
-import memories from "../../images/memories.png";
+import memoriesLogo from "../../images/memoriesLogo.png";
+import memoriesText from "../../images/memoriesText.png";
 import useStyles from "./styles";
 
 export const Navbar = () => {
@@ -36,18 +37,15 @@ export const Navbar = () => {
   }, [location]);
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-          align="center"
-        >
-          Memories
-        </Typography>
-        <img className={classes.image} src={memories} alt="icon" height="60" />
-      </div>
+      <Link to="/" className={classes.brandContainer}>
+        <img src={memoriesText} alt="icon" height="45px" />
+        <img
+          className={classes.image}
+          src={memoriesLogo}
+          alt="icon"
+          height="40px"
+        />
+      </Link>
       <Toolbar className={classes.toolbar}>
         {user?.result ? (
           <div className={classes.profile}>

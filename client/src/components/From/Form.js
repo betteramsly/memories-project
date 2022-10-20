@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -14,9 +15,10 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId ? state.posts.posts.find((message) => message._id === currentId) : null
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -38,7 +40,7 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
       clear();
     } else {
       dispatch(
@@ -59,14 +61,14 @@ const Form = ({ currentId, setCurrentId }) => {
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
+        <Typography variant="h6" margin-left='8px'>
           {currentId ? `Editing` : `Creating`} a Memory
         </Typography>
         <TextField
