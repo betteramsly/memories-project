@@ -1,7 +1,7 @@
-import React from "react";
-import moment from "moment";
-import { useDispatch } from "react-redux";
-import { deletePost, likePost } from "../../../actions/posts";
+import React from 'react'
+import moment from 'moment'
+import { useDispatch } from 'react-redux'
+import { deletePost, likePost } from '../../../actions/posts'
 
 import {
   Card,
@@ -10,20 +10,20 @@ import {
   CardMedia,
   Button,
   Typography,
-  ButtonBase,
-} from "@mui/material";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import { ThumbUpAlt, ThumbUpAltOutlined } from "@mui/icons-material";
-import { Delete } from "@mui/icons-material";
-import { MoreHoriz } from "@mui/icons-material";
-import useStyles from "./styles";
-import { useNavigate } from "react-router-dom";
+  ButtonBase
+} from '@mui/material'
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
+import { ThumbUpAlt, ThumbUpAltOutlined } from '@mui/icons-material'
+import { Delete } from '@mui/icons-material'
+import { MoreHoriz } from '@mui/icons-material'
+import useStyles from './styles'
+import { useNavigate } from 'react-router-dom'
 
 const Post = ({ post, setCurrentId }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   const Likes = () => {
     if (post.likes.length > 0) {
@@ -35,14 +35,14 @@ const Post = ({ post, setCurrentId }) => {
           &nbsp;
           {post.likes.length > 2
             ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+            : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}
         </>
       ) : (
         <>
           <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
+          &nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}
         </>
-      );
+      )
     }
 
     return (
@@ -50,14 +50,14 @@ const Post = ({ post, setCurrentId }) => {
         <ThumbUpAltOutlined fontSize="small" />
         &nbsp;Like
       </>
-    );
-  };
+    )
+  }
 
   const postDesc =
     post?.message.length > 100
-      ? post?.message.slice(0, 100) + "..."
-      : post?.message;
-  const openPost = () => navigate(`/posts/${post._id}`);
+      ? post?.message.slice(0, 100) + '...'
+      : post?.message
+  const openPost = () => navigate(`/posts/${post._id}`)
 
   return (
     <Card className={classes.card} raised elevation={6}>
@@ -66,7 +66,7 @@ const Post = ({ post, setCurrentId }) => {
           className={classes.media}
           image={
             post.selectedFile ||
-            "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+            'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
           }
           title={post.title}
         />
@@ -80,7 +80,7 @@ const Post = ({ post, setCurrentId }) => {
           user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
             <Button
-              style={{ color: "white" }}
+              style={{ color: 'white' }}
               size="small"
               onClick={() => setCurrentId(post._id)}
             >
@@ -128,7 +128,7 @@ const Post = ({ post, setCurrentId }) => {
         )}
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

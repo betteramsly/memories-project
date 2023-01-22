@@ -1,59 +1,59 @@
-import React, { useState, useEffect } from "react";
-import FileBase from "react-file-base64";
-import { TextField, Button, Typography, Paper } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react'
+import FileBase from 'react-file-base64'
+import { TextField, Button, Typography, Paper } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
 
-import useStyles from "./styles";
-import { createPost, updatePost } from "../../actions/posts";
-import { useNavigate } from "react-router-dom";
+import useStyles from './styles'
+import { createPost, updatePost } from '../../actions/posts'
+import { useNavigate } from 'react-router-dom'
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
-  });
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: ''
+  })
   const post = useSelector((state) =>
-    currentId ? state.posts.posts.find((message) => message._id === currentId) : null
-  );
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const classes = useStyles();
-  const user = JSON.parse(localStorage.getItem("profile"));
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
+  )
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const classes = useStyles()
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(() => {
-    if (post) setPostData(post);
-  }, [post]);
+    if (post) setPostData(post)
+  }, [post])
 
   const clear = () => {
-    setCurrentId(0);
+    setCurrentId(0)
     setPostData({
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
-    });
-  };
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: ''
+    })
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
-      clear();
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate))
+      clear()
     } else {
-      dispatch(
-        updatePost(currentId, { ...postData, name: user?.result?.name })
-      );
-      clear();
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
+      clear()
     }
-  };
+  }
 
   if (!user?.result?.name) {
     return (
       <Paper className={classes.paper}>
-        <Typography variant='h6' align='center'>
+        <Typography variant="h6" align="center">
           Please Sign In to create your own memories and like other's memories.
         </Typography>
       </Paper>
@@ -68,7 +68,7 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6" margin-left='8px'>
+        <Typography variant="h6" margin-left="8px">
           {currentId ? `Editing` : `Creating`} a Memory
         </Typography>
         <TextField
@@ -98,7 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           value={postData.tags}
           onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
+            setPostData({ ...postData, tags: e.target.value.split(',') })
           }
         />
         <div className={classes.fileInput}>
@@ -132,7 +132,7 @@ const Form = ({ currentId, setCurrentId }) => {
         </Button>
       </form>
     </Paper>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

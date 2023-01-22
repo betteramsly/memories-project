@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Posts from "../Posts/Posts";
-import Form from "../From/Form";
-import { getPosts, getPostsBySearch } from "../../actions/posts";
-import Pagination from "../Pagination";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import Posts from '../Posts/Posts'
+import Form from '../From/Form'
+import { getPosts, getPostsBySearch } from '../../actions/posts'
+import Pagination from '../Pagination'
 
 import {
   Container,
@@ -15,46 +15,46 @@ import {
   TextField,
   Button,
   Autocomplete,
-  Chip,
-} from "@mui/material";
+  Chip
+} from '@mui/material'
 // import ChipInput from "material-ui-chip-input";
 // import Autocomplete from '@mui/material/Autocomplete'
-import useStyles from "./styles";
+import useStyles from './styles'
 
 const Home = () => {
-  const classes = useStyles();
-  const query = useQuery();
-  const navigate = useNavigate();
-  const page = query.get("page") || 1;
-  const searchQuery = query.get("searchQuery");
-  const [search, setSearch] = useState("");
-  const [tags, setTags] = useState([]);
+  const classes = useStyles()
+  const query = useQuery()
+  const navigate = useNavigate()
+  const page = query.get('page') || 1
+  const searchQuery = query.get('searchQuery')
+  const [search, setSearch] = useState('')
+  const [tags, setTags] = useState([])
 
   function useQuery() {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().search)
   }
-  const [currentId, setCurrentId] = useState(0);
-  const dispatch = useDispatch();
+  const [currentId, setCurrentId] = useState(0)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
+    dispatch(getPosts())
+  }, [currentId, dispatch])
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
-      searchPost();
+      searchPost()
     }
-  };
+  }
 
   const searchPost = () => {
     if (search.trim() || tags) {
-      console.log("search tags: ", tags);
-      dispatch(getPostsBySearch({ search, tags: tags }));
-      navigate(`/posts/search?searchQuery=${search || "none"}&tags=${tags}`);
+      console.log('search tags: ', tags)
+      dispatch(getPostsBySearch({ search, tags: tags }))
+      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags}`)
     } else {
-      navigate("/");
+      navigate('/')
     }
-  };
+  }
 
   return (
     <div>
@@ -86,7 +86,7 @@ const Home = () => {
               />
               <TextField
                 name="search"
-                style={{ margin: "10px 0" }}
+                style={{ margin: '10px 0' }}
                 variant="outlined"
                 label="Search Tags"
                 onKeyPress={handleKeyPress}
@@ -113,7 +113,7 @@ const Home = () => {
         </Grid>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

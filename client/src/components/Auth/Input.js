@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Grid, IconButton, InputAdornment, TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Grid, IconButton, InputAdornment, TextField } from '@mui/material'
 
 export const Input = ({
   name,
@@ -10,8 +10,9 @@ export const Input = ({
   half,
   autoFocus,
   type,
-  handleShowPassword,
+  handleShowPassword
 }) => {
+
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
       <TextField
@@ -24,18 +25,21 @@ export const Input = ({
         autoFocus={autoFocus}
         type={type}
         InputProps={
-          name === "password" ? {
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={handleShowPassword}>
-                  {type === "password" ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          } : null}
+          name === 'password'
+            ? {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleShowPassword}>
+                      {type === 'password' ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }
+            : null
+        }
       />
     </Grid>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

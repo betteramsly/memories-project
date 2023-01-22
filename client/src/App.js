@@ -1,14 +1,14 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import Auth from "./components/Auth/Auth";
-import { PostDetails } from "./components/PostDedails/PostDetails";
+import React from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
+import Auth from './components/Auth/Auth'
+import { PostDetails } from './components/PostDedails/PostDetails'
 
-import { Container } from "@mui/material";
+import { Container } from '@mui/material'
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   return (
     <Container maxWidth="xl">
@@ -24,7 +24,7 @@ const App = () => {
         />
       </Routes>
     </Container>
-  );
-};
+  )
+}
 
-export default App;
+export default App

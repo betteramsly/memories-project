@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import * as actionType from "../../constans/actionTypes";
-import decode from "jwt-decode";
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import * as actionType from '../../constans/actionTypes'
+import decode from 'jwt-decode'
 
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@mui/material";
-import memoriesLogo from "../../images/memoriesLogo.png";
-import memoriesText from "../../images/memoriesText.png";
-import useStyles from "./styles";
+import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material'
+import memoriesLogo from '../../images/memoriesLogo.png'
+import memoriesText from '../../images/memoriesText.png'
+import useStyles from './styles'
 
 export const Navbar = () => {
-  const classes = useStyles();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const classes = useStyles()
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const logout = () => {
-    dispatch({ type: actionType.LOGOUT });
+    dispatch({ type: actionType.LOGOUT })
 
-    navigate("/auth");
+    navigate('/auth')
 
-    setUser(null);
-  };
+    setUser(null)
+  }
 
   useEffect(() => {
-    const token = user?.token;
+    const token = user?.token
 
     if (token) {
-      const decodedToken = decode(token);
+      const decodedToken = decode(token)
 
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout()
     }
 
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+    setUser(JSON.parse(localStorage.getItem('profile')))
+  }, [location])
+
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Link to="/" className={classes.brandContainer}>
@@ -80,7 +81,7 @@ export const Navbar = () => {
         )}
       </Toolbar>
     </AppBar>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

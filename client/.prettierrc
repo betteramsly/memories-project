@@ -4,12 +4,7 @@
   "tabWidth": 2,
   "singleQuote": true,
   "trailingComma": "none",
-  "importOrder": [
-    "<THIRD_PARTY_MODULES>",
-    "^../(.*)",
-    "^./(.*)",
-    "(.scss)$"
-  ],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^../(.*)", "^./(.*)", "(.scss)$"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
